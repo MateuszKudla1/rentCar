@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<f:facet name="first">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<title>Car Wash</title>
+	</f:facet>
+
+	<f:facet name="middle">
+		<h:outputStylesheet name="bootstrap/css/bootstrap.css" />
+
+		<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" />
+
+		<h:outputScript name="bootstrap/js/bootstrap.js" />
+	</f:facet>
+
+	<f:facet name="last">
+
+	</f:facet>
+
+</h:head>
+<h:body>
+
+	<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+				aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">Car Wash</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="#">#{employeeBean.firstName}
+						#{employeeBean.lastName} <span class="sr-only">(current)</span>
+				</a></li>
+				<li><a href="#">Pesel: #{employeeBean.pesel}</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<form class="navbar-form navbar-left">
+					<a href="index.xhtml" class="btn btn-info" role="button">Log out</a>
+				</form>
+			</ul>
+		</div>
+		<!-- /.navbar-collapse -->
+	</div>
+	<div class="row">
+	  <div class="col-lg-6">
+<div class="panel-group col-xs-4 col-sm-3 col-md-6 col-lg-4">
+  <div class="panel panel-default">
+  
+    <div class="panel-body">
+				
+			<h:form>  
+    			<p:growl id="messages" showDetail="false"/>
+    			<h:outputText value="&lt;br/&gt;" escape="false" />
+    			<p:menu>
+        			<p:submenu label="Menu">
+            			<p:menuitem value="Manage rents" outcome="/index.xhtml" icon="ui-icon-star"/>
+            			<p:menuitem value="Add car" outcome="/index.xhtml" icon="ui-icon-star"/>
+        			</p:submenu>
+    			</p:menu>
+			</h:form>
+	</div>			
+			
+  </div>
+</div>
+  <div class="col-lg-6">
+  				<h:form styleClass="form-horizontal">
+			<h2>Add vehicle</h2>
+            
+        	<div class="form-group">
+				<h:outputLabel value="Brand" styleClass="control-label col-sm-2" />
+				<div class="col-sm-10">
+					<h:inputText value="#{employeeActionsBean.brand}"
+						styleClass="form-control" title="Email" tabindex="1"
+						required="true" requiredMessage="last name is required" />
+				</div>
+			</div>
+			
+			 <div class="form-group">
+				<h:outputLabel value="Model" styleClass="control-label col-sm-2" />
+				<div class="col-sm-10">
+					<h:inputText value="#{employeeActionsBean.model}"
+						styleClass="form-control" title="ff" tabindex="1"
+						required="true" requiredMessage="last name is required" />
+				</div>
+			</div>
+			
+			  <div class="form-group">
+				<h:outputLabel value="Type" styleClass="control-label col-sm-2" />
+				<div class="col-sm-10">
+					<h:inputText value="#{employeeActionsBean.type}"
+						styleClass="form-control" title="Email" tabindex="1"
+						required="true" requiredMessage="last name is required" />
+				</div>
+			</div>
+                    	<div class="form-group">
+				<h:outputLabel value="Production year" styleClass="control-label col-sm-2" />
+				<div class="col-sm-10">
+					<h:inputText value="#{employeeActionsBean.prod_year}"
+						styleClass="form-control" title="Email" tabindex="1"
+						required="true" requiredMessage="last name is required" />
+				</div>
+			</div>
+			
+			        	<div class="form-group">
+				<h:outputLabel value="Color" styleClass="control-label col-sm-2" />
+				<div class="col-sm-10">
+					<h:inputText value="#{employeeActionsBean.color}"
+						styleClass="form-control" title="Email" tabindex="1"
+						required="true" requiredMessage="last name is required" />
+				</div>
+			</div>
+			
+			        	<div class="form-group">
+				<h:outputLabel value="Mileage" styleClass="control-label col-sm-2" />
+				<div class="col-sm-10">
+					<h:inputText value="#{employeeActionsBean.mileage}"
+						styleClass="form-control" title="Email" tabindex="1"
+						required="true" requiredMessage="last name is required" />
+				</div>
+			</div>
+			
+			        	<div class="form-group">
+				<h:outputLabel value="Photo" styleClass="control-label col-sm-2" />
+				<div class="col-sm-10">
+					<h:inputText value="#{employeeActionsBean.photo}"
+						styleClass="form-control" title="Email" tabindex="1"
+						required="true" requiredMessage="last name is required" />
+				</div>
+				</div>
+				        	<div class="form-group">
+				<h:outputLabel value="Description" styleClass="control-label col-sm-2" />
+				<div class="col-sm-10">
+					<h:inputText value="#{employeeActionsBean.description}"
+						styleClass="form-control" title="Email" tabindex="1"
+						required="true" requiredMessage="last name is required" />
+				</div>
+			</div>
+			
+						 <div class="form-group">
+				<h:outputLabel value="Daily price" styleClass="control-label col-sm-2" />
+				<div class="col-sm-10">
+					<h:inputText value="#{employeeActionsBean.dprice}"
+						styleClass="form-control" title="Email" tabindex="1"
+						required="true" requiredMessage="last name is required" />
+				</div>
+			</div>
+			
+            <p:commandButton ajax="false" value="Add" action="#{employeeActionsBean.addVehicle()}"></p:commandButton>
+		
+			</h:form>
+			</div>
+</div> 
+</div>
+</nav>
+
+
+
+</h:body>
+</html>

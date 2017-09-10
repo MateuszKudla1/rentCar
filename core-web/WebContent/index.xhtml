@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+ 
+xmlns:p="http://primefaces.org/ui">
+
+
+   <h:head>
+	<f:facet name="first">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<title>Car Wash</title>
+	</f:facet>
+
+	<f:facet name="middle">
+		<h:outputStylesheet name="bootstrap/css/bootstrap.css" />
+
+		<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" />
+
+		<h:outputScript name="bootstrap/js/bootstrap.js" />
+	</f:facet>
+
+	<f:facet name="last">
+
+	</f:facet>
+
+</h:head>
+
+     <h:body>
+     
+     
+     <div class="page-header">
+</div>
+
+<div class="jumbotron">
+  <center><h1>RENTAL CARS</h1>
+  <p>rent a car for a good price!</p>
+  </center>
+</div>
+     
+     <div class="row">
+		<div class="col-xs-12">
+			<h:form styleClass="form-horizontal">
+				<div class="form-group">
+					<h:outputLabel value="Pesel" styleClass="control-label col-sm-2" />
+					<div class="col-sm-10">
+						<h:inputText value="#{employeeBean.pesel}"
+							styleClass="form-control" title="PESEL" tabindex="1"
+							required="true" requiredMessage="pesel is required"
+							validatorMessage="pesel must contain 11 characters">
+							<f:validateLength minimum="11" maximum="11" />
+						</h:inputText>
+					</div>
+				</div>
+				<div class="form-group">
+					<h:outputLabel value="Password" styleClass="control-label col-sm-2" />
+					<div class="col-sm-10">
+						<h:inputSecret value="#{employeeBean.password}"
+							styleClass="form-control" title="Password" tabindex="1"
+							required="true" requiredMessage="password is required" />
+						<h:commandButton value="Login" action="#{employeeBean.isEmployeeRegistered()}"
+							styleClass="button" />
+					</div>
+				</div>
+			</h:form>
+		</div>
+</div>
+
+
+<div class="row">
+		<div class="col-xs-12">
+			<h:outputLabel value="Register" />
+			<h:form styleClass="form-horizontal">
+				<div class="form-group">
+					<h:outputLabel value="First Name"
+						styleClass="control-label col-sm-2" />
+					<div class="col-sm-10">
+						<h:inputText value="#{unconfirmedCustomerBean.firstName}"
+							styleClass="form-control" title="Last Name" tabindex="1"
+							required="true" requiredMessage="first name is required" />
+					</div>
+				</div>
+				<div class="form-group">
+					<h:outputLabel value="Last Name"
+						styleClass="control-label col-sm-2" />
+					<div class="col-sm-10">
+						<h:inputText value="#{unconfirmedCustomerBean.lastName}"
+							styleClass="form-control" title="Last Name" tabindex="1"
+							required="true" requiredMessage="last name is required" />
+					</div>
+				</div>
+				<div class="form-group">
+					<h:outputLabel value="PESEL" styleClass="control-label col-sm-2" />
+					<div class="col-sm-10">
+						<h:inputText value="#{unconfirmedCustomerBean.pesel}"
+							styleClass="form-control" title="PESEL" tabindex="1"
+							required="true" requiredMessage="pesel is required"
+							validatorMessage="pesel must contain 11 characters">
+							<f:validateLength minimum="11" maximum="11" />
+						</h:inputText>
+					</div>
+				</div>
+				<div class="form-group">
+					<h:outputLabel value="Email" styleClass="control-label col-sm-2" />
+					<div class="col-sm-10">
+						<h:inputText value="#{unconfirmedCustomerBean.mail}"
+							styleClass="form-control" title="Email" tabindex="1"
+							required="true" requiredMessage="last name is required" />
+					</div>
+				</div>
+				<div class="form-group">
+					<h:outputLabel value="Password" styleClass="control-label col-sm-2" />
+					<div class="col-sm-10">
+						<h:inputSecret value="#{unconfirmedCustomerBean.password}"
+							styleClass="form-control" title="Password" tabindex="1"
+							required="true" requiredMessage="password is required"
+							validatorMessage="password must contain 8-20 characters">
+							<f:validateLength minimum="8" maximum="20" />
+						</h:inputSecret>
+						<h:commandButton value="Register"
+							action="#{unconfirmedCustomerBean.save()}" styleClass="button" />
+					</div>
+				</div>
+
+			</h:form>
+			
+			
+		</div>
+</div>
+     
+     
+     
+
+
+
+   
+
+     </h:body>
+</html>
+

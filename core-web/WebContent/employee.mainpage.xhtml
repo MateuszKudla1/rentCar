@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<f:facet name="first">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<title>Car Wash</title>
+	</f:facet>
+
+	<f:facet name="middle">
+		<h:outputStylesheet name="bootstrap/css/bootstrap.css" />
+
+		<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" />
+
+		<h:outputScript name="bootstrap/js/bootstrap.js" />
+	</f:facet>
+
+	<f:facet name="last">
+
+	</f:facet>
+
+</h:head>
+<h:body>
+	<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+				aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">Car Wash</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="#">#{employeeBean.firstName}
+						#{employeeBean.lastName} <span class="sr-only">(current)</span>
+				</a></li>
+				<li><a href="#">Pesel: #{employeeBean.pesel}</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<form class="navbar-form navbar-left">
+					<a href="index.xhtml" class="btn btn-info" role="button">Log out</a>
+				</form>
+			</ul>
+		</div>
+		<!-- /.navbar-collapse -->
+	</div>
+	<div class="panel-group col-xs-4 col-sm-3 col-md-6 col-lg-4">
+  <div class="panel panel-default">
+    <div class="panel-body">
+				
+			<h:form>  
+    			<p:growl id="messages" showDetail="false"/>
+    			<h:outputText value="&lt;br/&gt;" escape="false" />
+    			<p:menu>
+        			<p:submenu label="Menu">
+            			<p:menuitem value="Manage rents" outcome="/index.xhtml" icon="ui-icon-star"/>
+            			<p:menuitem value="Add vehicle" outcome="/employee.addvehicle.xhtml" icon="ui-icon-star"/>
+        			</p:submenu>
+    			</p:menu>
+			</h:form>
+</div>
+  </div>
+</div> </nav>
+<h3>Waiting for rent</h3>
+<h:form>
+<p:dataTable var="brent" value="#{employeeActionsBean.fetchRentsWithBookedStatus()}">
+    <p:column headerText="Rent date">
+        <h:outputText value="#{brent.rentDate}" />
+    </p:column>
+ 
+    <p:column headerText="Return Date">
+        <h:outputText value="#{brent.returnDate}" />
+    </p:column>
+ 
+    <p:column headerText="User details">
+        <h:outputText value="#{brent.customer}" />
+    </p:column>
+ 
+    <p:column headerText="Car details">
+        <h:outputText value="#{brent.vehicle}" />
+    </p:column>
+    
+    <p:column headerText="Destination">
+        <h:outputText value="#{brent.returnBranch}" />
+    </p:column>
+    
+    <p:column headerText="Total cost">
+        <h:outputText value="#{brent.cost}" />
+    </p:column>
+    
+    <p:column headerText="Accept">
+     <p:commandButton value="Accept" action="#{employeeActionsBean.changeRentStateToBooked()}" >
+     	<h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
+         <f:setPropertyActionListener value="#{brent}" target="#{employeeActionsBean.selectedRent}" />
+         </p:commandButton >
+    </p:column>
+</p:dataTable>
+</h:form>
+
+<h3>Waiting for return</h3>
+<h:form>
+<p:dataTable var="rrent" value="#{employeeActionsBean.fetchRentsWithRentedStatus()}">
+    <p:column headerText="Rent date">
+        <h:outputText value="#{rrent.rentDate}" />
+    </p:column>
+ 
+    <p:column headerText="Return Date">
+        <h:outputText value="#{rrent.returnDate}" />
+    </p:column>
+ 
+    <p:column headerText="User details">
+        <h:outputText value="#{rrent.customer}" />
+    </p:column>
+ 
+    <p:column headerText="Car details">
+        <h:outputText value="#{rrent.vehicle}" />
+    </p:column>
+    
+    <p:column headerText="Destination">
+        <h:outputText value="#{rrent.returnBranch}" />
+    </p:column>
+    
+    <p:column headerText="Total cost">
+        <h:outputText value="#{rrent.cost}" />
+    </p:column>
+    
+    <p:column headerText="Accept">
+     <p:commandButton value="Accept" action="#{employeeActionsBean.changeRentStateToReturned()}" >
+     	<h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
+         <f:setPropertyActionListener value="#{rrent}" target="#{employeeActionsBean.selectedRent}" />
+         </p:commandButton >
+    </p:column>
+</p:dataTable>
+</h:form>
+</h:body>
+</html>

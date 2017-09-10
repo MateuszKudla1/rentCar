@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<f:facet name="first">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<title>Car Rent</title>
+	</f:facet>
+
+	<f:facet name="middle">
+		<h:outputStylesheet name="bootstrap/css/bootstrap.css" />
+
+		<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" />
+
+		<h:outputScript name="bootstrap/js/bootstrap.js" />
+	</f:facet>
+
+	<f:facet name="last">
+
+	</f:facet>
+
+</h:head>
+<style>
+body {
+	background-color: #464545;
+    background-image:url(redsources/fsfs.jpg);
+    no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	
+}
+
+.ui-menu  {
+    border: 1px solid #222222 !important;
+    background: #222222 !important;
+    color: #ffffff !important;
+    font-weight: bolder !important;
+    width: 15em;
+    right: 15px;
+    top: -15px;
+}
+
+.ui-menu .ui-menuitem-link {
+    background-color: #28415b;
+    color: white;
+
+}
+
+.ui-menu .ui-menuitem-parent {
+    color: black;
+}
+
+.navbar{
+	background-color: #222222;
+	border: 1px solid #222222 !important;
+}
+
+.navbar-collapse{
+	color: white;
+	background-color: #375a7f;
+	border: 1px solid #222222 !important;
+
+}
+
+.navbar-nav:active{
+	background-color: #ffffff !important;
+	border: 1px solid #222222 !important;
+}
+
+
+ul.nav li.active{
+	color: #000000;
+	background-color: #28415b !important;
+	display: inline-block;
+}
+
+.ui-menu.ui-menu-dynamic {
+	background-color: white;
+}
+
+.panel-default {
+	background-color: #222222;
+	border: 1px solid #222222;
+	color: white;
+}
+.panel-group {
+	color: white;
+}
+
+a:link{
+	color: white !important;
+ }
+ 
+ a:hover{
+	color: #222222 !important;
+ }
+ 
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus{
+ 	background-color: #28415b;
+ }
+ 
+</style>
+<h:body>
+	<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+				aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">&nbsp;&nbsp;Car Rent</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="#">#{confirmedCustomerBean.firstName}
+						#{confirmedCustomerBean.lastName} <span class="sr-only">(current)</span>
+				</a></li>
+				<li><a href="#">Pesel: #{confirmedCustomerBean.pesel}</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li class="active"><a href="#">Account Balance:
+						#{confirmedCustomerBean.accountBalance}<span class="sr-only">(current)</span>
+				</a></li>
+				<form class="navbar-form navbar-left">
+					<a href="index.xhtml" class="btn btn-info" role="button">Log
+						out</a>
+				</form>
+			</ul>
+		</div>
+		<!-- /.navbar-collapse -->
+	</div>
+	<div class="panel-group  col-sm-3 col-md-3 col-lg-2">
+		<div class="panel panel-default">
+			<div class="panel-body">
+			
+			<h:form>  
+    			<p:growl id="messages" showDetail="false"/>
+    			<h:outputText value="&lt;br/&gt;" escape="false" />
+    			<p:menu>
+        			<p:submenu label="Menu">
+            			<p:menuitem value="Rent a car" outcome="/customer.rent.xhtml" icon="ui-icon-star"/>
+            			<p:menuitem value="My rents" outcome="/customer.history.xhtml" icon="ui-icon-star"/>
+            			<p:menuitem value="Change personal data" outcome="/index.xhtml" icon="ui-icon-star"/>
+        			</p:submenu>
+    			</p:menu>
+			</h:form>
+			</div>
+		</div>
+	</div>
+	</nav>
+	
+	<h:form id="form">
+    <p:dataGrid var="rent" value="#{rentBean.allRents}" columns="2" layout="grid"
+        rows="12" paginator="true" id="cars"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="6,12,16">
+ 
+        <f:facet name="header">
+           Rent history
+        </f:facet>
+ 
+        <p:panel header="ID:  #{rent.id}" style="text-align:center">
+            <h:panelGrid columns="1" style="width:100%">
+
+ 				 <h:outputText value="Return date: #{rent.returnDate}" />
+ 				  <h:outputText value="State: #{rent.state}" />
+ 				   <h:outputText value="Cost: #{rent.cost} PLN" />
+ 				   <h:outputText value="Car: #{rent.vehicle} " />	
+ 				    <h:outputText value="Destination: #{rent.returnBranch} " />				   
+ 				    <p:outputLabel for="console" value="Change destination:" />
+        <p:selectOneMenu id="console" value="#{rentBean.branchid}" style="width:125px">
+         
+            <f:selectItem itemLabel="Kielce" itemValue="1" />
+            <f:selectItem itemLabel="Krakow" itemValue="2" />
+            <f:selectItem itemLabel="Warszawa" itemValue="3" />   
+            <f:selectItem itemLabel="Poznan" itemValue="4" />
+            <f:selectItem itemLabel="Lodz" itemValue="5" />
+            
+        </p:selectOneMenu>
+ 				   
+ 				   <h3>Remember you can only once change destination</h3>
+ 				    <p:commandButton value="Change rent destination" action="#{rentBean.findRent()}" >
+                    <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
+                    <f:setPropertyActionListener value="#{rent}" target="#{rentBean.selectedRent}" />
+                </p:commandButton >
+                
+                
+ 
+           
+            </h:panelGrid>
+        </p:panel>
+ 
+    </p:dataGrid>
+ 
+</h:form>
+	
+	
+
+</h:body>
+</html>
